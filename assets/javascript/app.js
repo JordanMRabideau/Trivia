@@ -1,10 +1,10 @@
 // Constructor function that makes new trivia questions
 function QMaker(q, a, c1, c2, c3) {
     this.question = q;
-    this.answer = a;
-    this.choiceOne = c1;
-    this.choiceTwo = c2;
-    this.choiceThree = c3;
+    this.answer = [a, true];
+    this.choiceOne = [c1, false];
+    this.choiceTwo = [c2, false];
+    this.choiceThree = [c3, false];
 }
 
 
@@ -18,10 +18,10 @@ var questionOne = new QMaker(
 
 var questionTwo = new QMaker(
     "As of 2017, what is the highest grossing film of all time (adjusted for inflation)?",
-    "Gone With the Wind",
-    "Titanic",
-    "Avatar",
-    "Star Wars: The Force Awakens"
+    ["Gone With the Wind", true],
+    ["Titanic", false],
+    ["Avatar", false],
+    ["Star Wars: The Force Awakens", false],
 );
 
 var questionArray = [
@@ -47,12 +47,19 @@ function choiceShuffler(q) {
     };
     return choices
 }
+
+
 function newGame() {
-    $("#question").text(questionOne.question);
-    choiceArray = choiceShuffler(questionOne);
-    $("#choiceOne").text(choiceArray[0]);
-    $("#choiceTwo").text(choiceArray[1]);
-    $("#choiceThree").text(choiceArray[2]);
-    $("#choiceFour").text(choiceArray[3]);
+    var questionNumber = 0
+    function display() {
+        choiceArray = choiceShuffler(questionArray[questionNumber]);
+        console.log(choiceArray)
+        $("#choiceOne").text(choiceArray[0][0]);
+        $("#choiceTwo").text(choiceArray[1][0]);
+        $("#choiceThree").text(choiceArray[2][0]);
+        $("#choiceFour").text(choiceArray[3][0]);
+    }
+    display();
+    
 }
 newGame()
