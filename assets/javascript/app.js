@@ -6,8 +6,9 @@ function QMaker(q, a, c1, c2, c3) {
     this.choiceTwo = [c2, false];
     this.choiceThree = [c3, false];
 }
+// ========================================================================
 
-
+// Here I define the question objects using the QMaker constructor, and then enter the questions into an array
 var questionOne = new QMaker(
     "The popular Pokemon franchise began as what?",
     "A videogame",
@@ -18,18 +19,23 @@ var questionOne = new QMaker(
 
 var questionTwo = new QMaker(
     "As of 2017, what is the highest grossing film of all time (adjusted for inflation)?",
-    ["Gone With the Wind", true],
-    ["Titanic", false],
-    ["Avatar", false],
-    ["Star Wars: The Force Awakens", false],
+    "Gone With the Wind",
+    "Titanic",
+    "Avatar",
+    "Star Wars: The Force Awakens",
 );
 
 var questionArray = [
     questionOne,
     questionTwo,
 ];
+// ========================================================================
 
-var choiceArray = []
+var choiceArray = [];
+var timeHolder = 10;
+var correct = 0;
+var incorrect = 0;
+var questionIndex = 0;
 
 function choiceShuffler(q) {
     var choices = [
@@ -45,21 +51,38 @@ function choiceShuffler(q) {
         choices[i] = choices[j];
         choices[j] = x;
     };
-    return choices
+    
+    return choices;
+
 }
 
-
+// ========================================================================
 function newGame() {
-    var questionNumber = 0
-    function display() {
-        choiceArray = choiceShuffler(questionArray[questionNumber]);
+    function updateDisplay() {
+        $("#question").text(questionArray[questionIndex].question);
+        choiceArray = choiceShuffler(questionArray[questionIndex]);
         console.log(choiceArray)
-        $("#choiceOne").text(choiceArray[0][0]);
-        $("#choiceTwo").text(choiceArray[1][0]);
-        $("#choiceThree").text(choiceArray[2][0]);
-        $("#choiceFour").text(choiceArray[3][0]);
+        $("#choiceOne").text(choiceArray[0][0]).attr("value", choiceArray[0][1]);
+        $("#choiceTwo").text(choiceArray[1][0]).attr("value", choiceArray[1][1]);
+        $("#choiceThree").text(choiceArray[2][0]).attr("value", choiceArray[2][1]);
+        $("#choiceFour").text(choiceArray[3][0]).attr("value", choiceArray[3][1]);
     }
-    display();
+
+    $(".btn").click(function() {
+        console.log(this.value)
+        if(this.value == 'true') {
+            alert('Correct!')
+            questionIndex++;
+            correct++;
+            updateDisplay()
+        } else {
+            console.log('you lose');
+            questionIndex++;
+            incorrect++;
+            updateDisplay()
+        }
+    })
+    updateDisplay();
     
 }
 newGame()
