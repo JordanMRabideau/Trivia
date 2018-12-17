@@ -1,10 +1,11 @@
 // Constructor function that makes new trivia questions
-function QMaker(q, a, c1, c2, c3) {
+function QMaker(q, a, c1, c2, c3, img) {
     this.question = q;
     this.answer = [a, true];
     this.choiceOne = [c1, false];
     this.choiceTwo = [c2, false];
     this.choiceThree = [c3, false];
+    this.image = img;
 }
 // ========================================================================
 
@@ -15,6 +16,7 @@ var questionOne = new QMaker(
     "A trading card game",
     "A TV show",
     "A manga",
+    "../images/pikachu.jpg"
 );
 
 var questionTwo = new QMaker(
@@ -37,6 +39,15 @@ var correct = 0;
 var incorrect = 0;
 var questionIndex = 0;
 
+function updateDisplay() {
+    $("#question").text(questionArray[questionIndex].question);
+    choiceArray = choiceShuffler(questionArray[questionIndex]);
+    $("#choiceOne").text(choiceArray[0][0]).attr("value", choiceArray[0][1]);
+    $("#choiceTwo").text(choiceArray[1][0]).attr("value", choiceArray[1][1]);
+    $("#choiceThree").text(choiceArray[2][0]).attr("value", choiceArray[2][1]);
+    $("#choiceFour").text(choiceArray[3][0]).attr("value", choiceArray[3][1]);
+}
+
 function choiceShuffler(q) {
     var choices = [
         q.answer,
@@ -51,38 +62,41 @@ function choiceShuffler(q) {
         choices[i] = choices[j];
         choices[j] = x;
     };
-    
     return choices;
-
 }
 
-// ========================================================================
-function newGame() {
-    function updateDisplay() {
-        $("#question").text(questionArray[questionIndex].question);
-        choiceArray = choiceShuffler(questionArray[questionIndex]);
-        console.log(choiceArray)
-        $("#choiceOne").text(choiceArray[0][0]).attr("value", choiceArray[0][1]);
-        $("#choiceTwo").text(choiceArray[1][0]).attr("value", choiceArray[1][1]);
-        $("#choiceThree").text(choiceArray[2][0]).attr("value", choiceArray[2][1]);
-        $("#choiceFour").text(choiceArray[3][0]).attr("value", choiceArray[3][1]);
-    }
+$(".gameDivs").hide();
 
+$("#playButton").click(function() {
+    $(".instructions").hide();
+    $(".gameDivs").show();
+    newGame();
+})
+
+function winScreen() {
+    var winScreen = $("<div>");
+    var winText = $("<div>").html("<h3>Correct!</h3>");
+    // var winImage = $("<div id='winImage'>").html("<img src=" + questionArray[questionIndex].image + ">")
+    winScreen.append(winText);
+    // winScreen.append(winImage);
+    $(".gameDivs").hide();
+    $(".content").append(winScreen)
+}
+
+function newGame() {
+    // For an example of a timer, go to interval activity in week 5//
     $(".btn").click(function() {
-        console.log(this.value)
         if(this.value == 'true') {
-            alert('Correct!')
             questionIndex++;
             correct++;
-            updateDisplay()
+            winScreen()
         } else {
             console.log('you lose');
             questionIndex++;
             incorrect++;
-            updateDisplay()
+            
         }
+        updateDisplay();
     })
     updateDisplay();
-    
 }
-newGame()

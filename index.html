@@ -18,16 +18,29 @@
             <div class="row">
                 <div class="col-md-12 text-center bg-primary">
                     <h1>Completely Random Trivia!</h1>
-                    <p>Time remaining: <span id="timer"></span> </p>
-                    <h3 id="question"></h3>
-                    <div class="choices">
-                        <button type="button" class="btn btn-outline-light mb-2" id="choiceOne"></button>
-                        <br>
-                        <button type="button" class="btn btn-outline-light mb-2" id="choiceTwo"></button>
-                        <br>
-                        <button type="button" class="btn btn-outline-light mb-2" id="choiceThree"></button>
-                        <br>
-                        <button type="button" class="btn btn-outline-light mb-2" id="choiceFour"></button>
+                    <div class="instructions">
+                        <h3>Instructions:</h3>
+                        
+                        <p>
+                        Once you press the play button, you will be presented with a question and four answer choices. You will have 10 seconds to answer the question.
+                        The number of questions you get right or wrong will be tallied at the end of the game, at which point you will be able to restart and try again for a better score.
+                        </p>
+
+                        <p>Have fun!</p>
+                        <button type="button" class="btn btn-outline-light mb-2" id="playButton">Play</button> 
+                    </div>
+                    <div class="gameDivs">
+                        <p>Time remaining: <span id="timer"></span> </p>
+                        <h3 id="question"></h3>
+                        <div class="choices">
+                            <button type="button" class="btn btn-outline-light mb-2" id="choiceOne"></button>
+                            <br>
+                            <button type="button" class="btn btn-outline-light mb-2" id="choiceTwo"></button>
+                            <br>
+                            <button type="button" class="btn btn-outline-light mb-2" id="choiceThree"></button>
+                            <br>
+                            <button type="button" class="btn btn-outline-light mb-2" id="choiceFour"></button>
+                        </div>
                     </div>
                 </div>
             </div>
