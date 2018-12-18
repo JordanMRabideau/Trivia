@@ -16,30 +16,44 @@
     <body>
         <div class="container mt-5">
             <div class="row">
-                <div class="col-md-12 text-center bg-primary">
+                <div class="col-md-12 text-center bg-primary content">
                     <h1>Completely Random Trivia!</h1>
+
                     <div class="instructions">
                         <h3>Instructions:</h3>
-                        
                         <p>
                         Once you press the play button, you will be presented with a question and four answer choices. You will have 10 seconds to answer the question.
                         The number of questions you get right or wrong will be tallied at the end of the game, at which point you will be able to restart and try again for a better score.
                         </p>
-
                         <p>Have fun!</p>
                         <button type="button" class="btn btn-outline-light mb-2" id="playButton">Play</button> 
                     </div>
+
+                    <div class="answerScreen">
+                        <h3 id="check"></h3>
+                        <p id="correctAnswer"></p>
+                        <img class="mb-2" id="answerImage" src="" >
+                    </div>
+
+                    <div class="endScreen">
+                        <h3>Quiz complete!</h3>
+                        <h4>Answers correct:<span id="correct"></span></h4>
+                        <h4>Answers incorrect: <span id="incorrect"></span></h4>
+                        <h3>If you want to try again, press the restart button.</h3>
+                        <button type="button" class="btn btn-outline-light mb-2" id="restartButton">Restart</button> 
+                    </div>
+
                     <div class="gameDivs">
                         <p>Time remaining: <span id="timer"></span> </p>
                         <h3 id="question"></h3>
                         <div class="choices">
-                            <button type="button" class="btn btn-outline-light mb-2" id="choiceOne"></button>
+                            <button type="button" class="btn btn-outline-light mb-2 choice" id="choiceOne"></button>
                             <br>
-                            <button type="button" class="btn btn-outline-light mb-2" id="choiceTwo"></button>
+                            <button type="button" class="btn btn-outline-light mb-2 choice" id="choiceTwo"></button>
                             <br>
-                            <button type="button" class="btn btn-outline-light mb-2" id="choiceThree"></button>
+                            <button type="button" class="btn btn-outline-light mb-2 choice" id="choiceThree"></button>
                             <br>
-                            <button type="button" class="btn btn-outline-light mb-2" id="choiceFour"></button>
+                            <button type="button" class="btn btn-outline-light mb-2 choice" id="choiceFour"></button>
                         </div>
                     </div>
                 </div>
