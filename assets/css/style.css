@@ -3,3 +3,6 @@ h3 {
     font-family: 'Unlock', cursive;
 }
 
+body {
+    background: url(../images/dark-paths.png)
+}
